@@ -46,7 +46,7 @@ namespace FishMonitoringConsole
 
     public abstract class Quality
     {
-
+        //Доделать
     }
 
     public class TempQuality : Quality
@@ -65,22 +65,22 @@ namespace FishMonitoringConsole
 
         public double GetMaxTemp()
         {
-            return 10.1;
+            //Доделать
         }
 
         public double GetMinTemp()
         {
-            return 1.1;
+            //Доделать
         }
 
         public TimeSpan GetTempUpperTime(double temp)
         {
-            return new TimeSpan();
+            //Доделать
         }
 
         public TimeSpan GetTempLowerTime(double temp)
         {
-            return new TimeSpan();
+            //Доделать
         }
     }
 }
