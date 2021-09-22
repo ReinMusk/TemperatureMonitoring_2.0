@@ -7,7 +7,8 @@ namespace FishMonitoringConsole
     {
         static void Main(string[] args)
         {
-            Quality quality = new TempQuality();
+            Dictionary<DateTime, double> dict = new Dictionary<DateTime, double>;
+            Quality quality = new TempQuality(dict);
             Fish mentai = new FrozenFish(quality, mx, deathTime);
             mentai.isValid();
         }
@@ -29,6 +30,10 @@ namespace FishMonitoringConsole
         {
             return !((quality as TempQuality).GetTempUpperTime(maxStoreTemp) > deathTime);
         }
+        public FrozenFish(Quality qual, double mxt, TimeSpan)
+        {
+
+        }
     }
     public class ChilledFish : Fish
     {
@@ -46,7 +51,7 @@ namespace FishMonitoringConsole
 
     public abstract class Quality
     {
-        //Доделать
+        
     }
 
     public class TempQuality : Quality
@@ -65,22 +70,22 @@ namespace FishMonitoringConsole
 
         public double GetMaxTemp()
         {
-            //Доделать
+            return 10.1;
         }
 
         public double GetMinTemp()
         {
-            //Доделать
+            return 1.1;
         }
 
         public TimeSpan GetTempUpperTime(double temp)
         {
-            //Доделать
+            return new TimeSpan();
         }
 
         public TimeSpan GetTempLowerTime(double temp)
         {
-            //Доделать
+            return new TimeSpan();
         }
     }
 }
