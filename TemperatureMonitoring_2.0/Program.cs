@@ -1,91 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FishMonitoringConsole
+namespace TemperatureMonitoring_2_0
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Dictionary<DateTime, double> dict = new Dictionary<DateTime, double>;
-            Quality quality = new TempQuality(dict);
+            DateTime begin = DateTime.Now;
+            TimeSpan interval = new TimeSpan(0, 5, 0);
+            double[] data = {1, 2, 3, 3, 4, 3, 5, 4, 2, 1, 1.1, 1, 1, 0, -1.1, -2, -2, -3, -4, -4, -5.7, -5, -4, -4, -4, -3};
+            TempQuality quality = new TempQuality(begin, interval, data);
+
+            double mx = 5.0;
+
+            TimeSpan deathTime = new TimeSpan(0,20,0);
+
+
             Fish mentai = new FrozenFish(quality, mx, deathTime);
             mentai.isValid();
-        }
-    }
-
-    public abstract class Fish
-    {
-        public string name;
-        public Quality quality;
-        public abstract bool isValid();
-    }
-
-    public class FrozenFish : Fish
-    {
-        public double maxStoreTemp;
-        public TimeSpan deathTime;
-
-        public override bool isValid()
-        {
-            return !((quality as TempQuality).GetTempUpperTime(maxStoreTemp) > deathTime);
-        }
-        public FrozenFish(Quality qual, double mxt, TimeSpan)
-        {
-
-        }
-    }
-    public class ChilledFish : Fish
-    {
-        public double minStoreTemp;
-        public double maxStoreTemp;
-        public TimeSpan minDeathTime;
-        public TimeSpan maxDeathTime;
-
-        public override bool isValid()
-        {
-            return !((quality as TempQuality).GetTempUpperTime(maxStoreTemp) > maxDeathTime
-                || (quality as TempQuality).GetTempLowerTime(maxStoreTemp) < minDeathTime);
-        }
-    }
-
-    public abstract class Quality
-    {
-        
-    }
-
-    public class TempQuality : Quality
-    {
-        Dictionary<DateTime, double> temperature;
-
-
-        public TempQuality(Dictionary<DateTime, double> temp)
-        {
-            this.temperature = temp;
-        }
-        public TempQuality(DateTime begin, TimeSpan interval, double[] data)
-        {
-            //Доделать
-        }
-
-        public double GetMaxTemp()
-        {
-            return 10.1;
-        }
-
-        public double GetMinTemp()
-        {
-            return 1.1;
-        }
-
-        public TimeSpan GetTempUpperTime(double temp)
-        {
-            return new TimeSpan();
-        }
-
-        public TimeSpan GetTempLowerTime(double temp)
-        {
-            return new TimeSpan();
         }
     }
 }
